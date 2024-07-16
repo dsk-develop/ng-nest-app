@@ -1,0 +1,51 @@
+<div class="col-12">
+  <nav class="navbar navbar-expand-lg navbar-light bg-custom">
+    <div class="d-flex justify-content-between m-4">
+      <h2 class="text-primary">TODO...</h2>
+    </div>    
+    <!-- <div class="d-flex justify-content-between m-4 ms-auto" *ngIf="showUser">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="" (click)="toggleView(true)">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+        <li class="nav-item">
+          !-- <a class="nav-link" routerLink="/" >Logout</a> --
+          <a class="nav-link" (click)="logout()" routerLink="/">Logout <i class="fa fa-sign-out"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()" style="cursor: pointer;">
+            Logout <i class="fa fa-sign-out"></i>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!showHomeContent">
+          <a class="nav-link" (click)="toggleView(true)">Home</a>
+        </li>
+      </ul>
+    </div> -->
+    <div class="d-flex justify-content-between m-4 ms-auto" *ngIf="!showUser">
+      <div class="nav-item m-1">
+        <a class="nav-link" routerLink="" (click)="toggleView(true)">Home</a>
+      </div>      
+      <div class="nav-item active m-1">
+        <a class="nav-link" routerLink="/login">Login<span class="sr-only"></span></a>
+      </div>
+      <div class="px-2">
+        <a class="nav-link m-1" (click)="logout()" routerLink="/"> <i class="fa fa-sign-out"></i></a>
+      </div>
+    </div>
+
+  </nav>
+  <div *ngIf="showHomeContent; else registrationForm">
+    <router-outlet></router-outlet>
+  </div>
+
+  <ng-template #registrationForm>
+    <app-register (registered)="toggleView(true)"></app-register>
+  </ng-template>
+</div>

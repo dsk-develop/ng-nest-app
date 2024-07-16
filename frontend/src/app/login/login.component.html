@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="d-flex justify-content-center m-4">
+        <div class="card m-7 col-3">
+          <h5  class="m-1 text-center">TODO - MAKER</h5>
+          <h5 class="m-1 text-center text-secondary"> Login</h5>
+          <form class="m-4" #loginForm="ngForm" (ngSubmit)="onLogin()">
+            <label class="form-label" for="Email">Email</label>
+              <input type="email" id="email" name="email" [(ngModel)]="email" #emailCtrl="ngModel" required  class="form-control" email>
+              <div *ngIf="emailCtrl.invalid && emailCtrl.touched">
+                <div *ngIf="emailCtrl.errors?.['required']" class="text-danger">Email is required.</div>
+                <div *ngIf="emailCtrl.errors?.['email']" class="text-danger">Valid email is required.</div>
+              </div>
+            <br>
+            <label class="form-label" for="password">Password:</label>
+            <input class="form-control" type="password" id="password" name="password" [(ngModel)]="password"  #passwordCtrl="ngModel"  required>
+            <div *ngIf="passwordCtrl.invalid && passwordCtrl.touched">
+              <div *ngIf="passwordCtrl.errors?.['required']" class="text-danger">Password is required.</div>
+            </div><br>
+            <div class="d-flex">
+              <a class="" routerLink="/register">Register</a>&nbsp;&nbsp;
+              <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+            </div>
+          </form>
+          
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<!-- <p>home works!</p> -->
+<div class="main-container">
+  <div class="d-flex justify-content-between m-4 ">
+    <button class="btn btn-primary " (click)="openCreateTodoForm(null)">Create New TODO</button>
+    <div class=" justify-content-between">
+
+    </div>
+    <!-- Filter Dropdown -->
+    <div class="col-3 d-flex">
+      <label for="statusFilter" class="m-1">Status: </label>&nbsp;
+      <!-- [(ngModel)]="selectedStatus" (change)="filterRecords()" -->
+      <select class="dropdown" id="statusFilter">
+        <option value="">All</option>
+        <option value="open">Open</option>
+        <option value="closed">Closed</option>
+      </select>
+    </div>
+  </div>
+  <hr>
+  <div class="d-flex justify-content-center m-4">
+    <div class="m-4">
+      <div class="me-4">
+        <div class="d-flex flex-row-reverse m-0">
+          <div class="col-md-12">
+            <div class="row header">
+              <div class="col-md">
+                <strong>Title</strong>
+              </div>
+              <div class="col-md">
+                <strong>Status</strong>
+              </div>
+              <div class="col-md">
+                <strong>Description</strong>
+              </div>
+              <div class="col-md">
+                <strong>Action</strong>
+              </div>
+            </div>
+            <div class="row" *ngFor="let item of todos">
+              <div class="col-3 text-truncate" title="{{ item.title }}">
+                <!-- <a [routerLink]="['/todos/edit', item.id]">{{ item.title }}</a> -->
+                <!-- <a [routerLink]="['/todos/edit', item.id]" (click)="logItemId(item.id,item.title,item.description)">{{ item.title }}</a> -->
+                <!-- <a [routerLink]="['/todos/edit', item.id]" [queryParams]="{ title: item.title, description: item.description }">{{ item.title }}</a> -->
+                <button class="btn btn-link" (click)="openCreateTodoForm(item)">{{ item.title }}</button>
+              </div>
+              <div class="col-3 text-truncate" title="{{ item.status }}">
+                {{ item.status }}
+              </div>
+              <div class="col-3 text-truncate text-wrap" title="{{ item.description }}">
+                {{ item.description }}
+              </div>
+              <div class="col-3">
+                <i class="fa fa-trash-o"
+                style="font-size:20px;color:red;cursor: pointer;margin: 17px 0px 0px 16px;"
+                (click)="onDelete(item.id)"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Create Todo Form -->
+  <div class="col">
+    <div class="d-flex justify-content-center">
+      <div *ngIf="showCreateForm" class="modal">
+        <div class="modal-content">
+          <span class="close" (click)="closeCreateTodoForm()" style="float: inline-end;">&times;</span>
+          <h2>Create New Todo</h2>
+          <form (ngSubmit)="createTodo()">
+            <label class="form-label" for="title">Title:</label>
+            <input class="form-control" type="text" id="title" name="title" [(ngModel)]="title" required>
+            <label class="form-label" for="description">Description:</label>
+            <textarea class="form-control" id="description" [(ngModel)]="description" name="description"
+              required></textarea><br>
+            <label class="form-label" for="status">Status:</label>
+            <select class="form-control" id="status" name="status" [(ngModel)]="status" required>
+              <option [value]="st.value" *ngFor="let st of status">{{st.label}}</option>
+            </select>
+            <br>
+            <button type="submit" class="btn btn-primary">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
