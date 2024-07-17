@@ -22,32 +22,11 @@ export class ApiService {
     const fetchToken: string | null = localStorage.getItem('act');
 
       if (fetchToken) {
-        // using descripted formate
         this.token = atob(fetchToken);
         this.jwtToken$.next(this.token);
       }
   }
-
-  getTodoById(id: number): Observable<any> {
-    return this.http.get(`${environment.base_url}/api/todos/${id}`);
-  }
-
-  updateToDo(id: number,body: {title: string, description: string, status: any[]}): Observable<any> {
-    return this.http.patch(`${environment.base_url}/api/todos:${id}`, body);
-  }
-
-  createToDo(body: {title: string, description: string, status: any[]}): Observable<any> {
-    const token = this.token;
-    return this.http.post(`${environment.base_url}/api/todos/`, body);
-  }
-  deleteToDo(id: string): Observable<any> {
-    return this.http.delete(`${environment.base_url}/api/todos/${id}`);
-  }
-
-  listToDos(): Observable<any> {
-    return this.http.get(`${environment.base_url}/api/todos`);
-  }
-
+  // register
   register(userData: any): Observable<any> {
     const url = `${environment.base_url}/user/register`;
     return this.http.post(url, userData);
@@ -57,18 +36,6 @@ export class ApiService {
     const url = `${environment.base_url}/user/login`;
     return this.http.post(url, { email, password });
   }
-
-  // getTodoById(id: string): Observable<any> {
-  //   return this.http.get(`${environment.base_url}/api/todos/${id}`);
-  // }
-
-  // updateToDo(id: string, data: { title: string; description: string; status: string }): Observable<any> {
-  //   return this.http.put(`${environment.base_url}/api/todos/${id}`, data);
-  // }
-  // updateToDo(id: string, data: { title: string, description: string, status: string }): Observable<any> {
-  //   return this.http.put(`${environment.base_url}/api/todos/${id}`, data);
-  // }
-
   // logout
   logout() {
     this.token = '';
@@ -80,5 +47,21 @@ export class ApiService {
         this.router.navigateByUrl('/login').then();
       });
     return '';
+  }
+  // create todo
+  createToDo(body: {title: string, description: string, status: string}): Observable<any> {
+    return this.http.post(`${environment.base_url}/api/todos/`, body);
+  }
+  // update todo
+  updateToDo(id: number, body: {title: string, description: string, status: string}): Observable<any> {
+    return this.http.patch(`${environment.base_url}/api/todos/${id}/update-status`, body);
+  }
+  // delete todo
+  deleteToDo(id: string): Observable<any> {
+    return this.http.delete(`${environment.base_url}/api/todos/${id}`);
+  }
+  // get list
+  listToDos(): Observable<any> {
+    return this.http.get(`${environment.base_url}/api/todos`);
   }
 }

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environments';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -51,7 +50,7 @@ export class RegisterComponent implements OnInit {
         (res: any) => {
           if (res.message === "User created") {
             this.toastr.success('Registration successful!', 'Success');
-            this.router.navigateByUrl('/').then();
+            this.router.navigateByUrl('login').then();
           } else {
             this.toastr.error('Registration failed. Please try again.', 'Error');
           }

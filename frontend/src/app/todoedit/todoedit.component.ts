@@ -35,22 +35,6 @@ export class TodoeditComponent {
   }
   
 
-  // ngOnInit(): void {
-  //   this.itemId = this.route.snapshot.params['id'];
-  //   this.editForm = this.formBuilder.group({
-  //     title: ['', Validators.required],
-  //     status: ['', Validators.required],
-  //     description: ['', Validators.required]
-  //   });
-
-  //   if (this.itemId) {
-  //     this.apiService.getTodoById(this.itemId).subscribe((data) => {
-  //       this.editForm.patchValue(data);
-  //     });
-  //   }
-  // }
-  
-
   onSave(): void {
     if (this.editForm.valid) {
       // if (this.itemId) {

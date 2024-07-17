@@ -1,11 +1,8 @@
 import { Component,inject} from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'src/app/services/api.service';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environments';
 
 @Component({
   selector: 'app-login',

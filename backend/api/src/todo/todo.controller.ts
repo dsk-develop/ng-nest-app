@@ -6,8 +6,7 @@ import path from 'path';
 import { TodoEntity, TodoStatus } from 'src/Entity/todo.entity';
 import { TodoStatusValidationPipe } from 'src/Pipes/TodoStatusValidation.pipe';
 
-// http://localhost:3000/api/todos
-@Controller('api/todos')
+@Controller('/api/todos')
 export class TodoController {
 
     constructor(private todoService: TodoService) {}

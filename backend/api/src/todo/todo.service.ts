@@ -1,6 +1,5 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateTodoDto } from 'src/DTO/create.todo.dto';
 import { TodoEntity, TodoStatus } from 'src/Entity/todo.entity';
 import { DeleteResult, Repository } from 'typeorm';
 @Injectable()
@@ -20,7 +19,7 @@ export class TodoService {
     async getAllTodos():Promise<TodoEntity[]> {
         return await this.repo.find();
     }
-    async createTodo(createTodoDto: CreateTodoDto): Promise<TodoEntity> {
+    async createTodo(createTodoDto: any): Promise<TodoEntity> {
         const { title, description, status } = createTodoDto;
         const newTodo = new TodoEntity();
         newTodo.title = title;
@@ -49,5 +48,3 @@ async todoUpdate(id: number, status: TodoStatus): Promise<TodoEntity> {
     }
   }
 }
-
-export { CreateTodoDto };

@@ -8,6 +8,7 @@ import { LoggerModule } from './logger/logger.module';
 import { AsyncStorageMiddleware } from './global/middleware/async-storage/async-storage.middleware';
 import { GlobalModule } from './global/global.module';
 import { HealthModule } from './health/health.module';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { HealthModule } from './health/health.module';
     ConfigModule,
     LoggerModule,
     HealthModule,
+    TodoModule,
   ],
 })
 export class AppModule {
